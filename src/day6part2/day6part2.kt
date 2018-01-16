@@ -1,4 +1,4 @@
-package day6
+package day6part2
 
 import java.io.File
 
@@ -6,21 +6,32 @@ fun main(args: Array<String>) {
     val blocks = File("day6input.txt").readText().split("\t").map { it.toInt() }.toTypedArray()
 
     var numberOfTries = 0
+
     var nextStep = blocks.clone()
-
-    var steps: MutableList<Array<Int>> = mutableListOf()
+    var results: MutableList<Array<Int>> = mutableListOf()
     var found = false;
+
     do {
-        numberOfTries++;
+        numberOfTries++
         nextStep = spreadBlocks(nextStep.indexOf(nextStep.max()), nextStep.clone())
-
-        if (containsArray(steps, nextStep)){
+        if (containsArray(results, nextStep)){
             found = true
+            println("1st appearance: ${numberOfTries}")
+            println("2nd appearance: " + loopUntilFoundAgain(nextStep))
         }
-        steps.add(nextStep)
+        results.add(nextStep)
     } while (!found)
+}
 
-    println("> ${numberOfTries}")
+fun loopUntilFoundAgain(blocks: Array<Int>) : Int {
+    var step = blocks
+    var numberOfTries = 0
+    do {
+        numberOfTries++
+        step = spreadBlocks(step.indexOf(step.max()), step.clone())
+    } while(!(step contentEquals blocks) )
+
+    return numberOfTries
 }
 
 fun spreadBlocks (position: Int, blocks: Array<Int>) : Array<Int> {
@@ -39,4 +50,3 @@ fun containsArray(list: List<Array<Int>>, newElement: Array<Int>) : Boolean {
             .filter {it contentEquals newElement }
             .count() > 0
 }
-

@@ -5,7 +5,7 @@ import java.io.File
 fun main(args: Array<String>) {
     val lineList = File("day4input.txt").readLines()
 
-    var count = lineList.stream()
+    val count = lineList.stream()
         .filter { isValidPassphrase(it) }
         .count()
 
@@ -16,13 +16,12 @@ fun isValidPassphrase(passphrase: String): Boolean {
     println("Checking ${passphrase}")
     val words = passphrase.split(" ")
     val uniques = words.distinct()
-    if (words.size == uniques.size) {
-        words.forEach {
-            if (!findAnagrams(it, words).isEmpty())
-                return false
-        }
-    } else {
+    if (words.size != uniques.size) {
         return false
+    }
+    uniques.forEach {
+        if (!findAnagrams(it, uniques).isEmpty())
+            return false
     }
     return true
 }

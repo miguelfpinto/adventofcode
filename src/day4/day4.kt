@@ -5,7 +5,7 @@ import java.io.File
 fun main(args: Array<String>) {
     val lineList = File("day4input.txt").readLines()
 
-    var count = lineList.stream()
+    val count = lineList.stream()
         .filter { isValidPassphrase(it) }
         .count()
 
