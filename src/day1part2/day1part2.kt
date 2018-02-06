@@ -1,4 +1,4 @@
-package day1
+package day1part2
 
 import java.io.File
 
@@ -7,12 +7,11 @@ fun main(args: Array<String>) {
 
     var sum = 0
 
-    (0 until captcha.length-1).forEach { i ->
-        if (captcha[i] == captcha[i+1])
+    (0 until captcha.length).forEach { i ->
+        var pos = (i+(captcha.length/2))%captcha.length
+        if (captcha[i] == captcha[pos])
             sum += Integer.valueOf(""+captcha[i])
     }
 
-    if (captcha[captcha.length-1] == captcha[0])
-        sum += Integer.valueOf(""+captcha[0])
     println(sum)
 }
