@@ -8,28 +8,35 @@ fun main(args : Array<String>) {
     val input = File("day11input.txt").readText().split(",")
 
     // Using cube coordinates from  https://www.redblobgames.com/grids/hexagons/
-    var x = 0
-    var y = 0
-    var z = 0
+    val finalPosition = input.fold( Hexagon(0,0,0) ) { currentPosition, direction -> moveToNextHexagon(currentPosition, direction) }
+
+    println("final position $finalPosition ")
+    println("final distance to origin ${distanceToOrigin(finalPosition)}")
+
+    var currentPosition = Hexagon(0,0,0)
     var maxDistance = 0
 
     input.forEach{
-        when (it) {
-            "nw" -> { y++; x-- }
-            "n" -> {z--;  y++}
-            "ne" -> { x++; z-- }
-            "se" -> {x++; y--}
-            "s" -> {z++; y--}
-            "sw" -> { x--; z++ }
-        }
-        maxDistance = max(maxDistance, distanceToOrigin(x,y,z))
+        currentPosition = moveToNextHexagon(currentPosition, it)
+        maxDistance = max(maxDistance, distanceToOrigin(currentPosition))
     }
-
-    println("final position ($x, $y, $z) ")
     println("max distance to origin $maxDistance")
-    println("final distance to origin ${distanceToOrigin(x,y,z)}")
 }
 
-fun distanceToOrigin(x: Int, y: Int, z: Int) : Int {
-    return (abs(x) + abs(y) + abs(z)) / 2
+fun distanceToOrigin(hex: Hexagon) : Int {
+    return (abs(hex.x) + abs(hex.y) + abs(hex.z)) / 2
 }
+
+fun moveToNextHexagon(position: Hexagon, direction: String) : Hexagon {
+    return when (direction) {
+        "nw" -> { Hexagon(position.x - 1, position.y + 1,  position.z) }
+        "n" -> { Hexagon(position.x, position.y + 1,  position.z - 1) }
+        "ne" -> { Hexagon(position.x + 1, position.y,  position.z - 1) }
+        "se" -> { Hexagon(position.x + 1, position.y - 1,  position.z) }
+        "s" -> { Hexagon(position.x, position.y -1 ,  position.z + 1) }
+        "sw" -> { Hexagon(position.x - 1, position.y,  position.z + 1) }
+        else -> Hexagon(0,0,0)
+    }
+}
+
+data class Hexagon(val x: Int, val y: Int, val z: Int)
