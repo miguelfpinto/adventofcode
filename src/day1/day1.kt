@@ -9,10 +9,10 @@ fun main(args: Array<String>) {
 
     (0 until captcha.length-1).forEach { i ->
         if (captcha[i] == captcha[i+1])
-            sum += Integer.valueOf(""+captcha[i])
+            sum += captcha[i].toString().toInt()
     }
 
     if (captcha[captcha.length-1] == captcha[0])
-        sum += Integer.valueOf(""+captcha[0])
+        sum += captcha[0].toString().toInt()
     println(sum)
 }

@@ -13,6 +13,7 @@ fun main(args : Array<String>) {
     println("final position $finalPosition ")
     println("final distance to origin ${distanceToOrigin(finalPosition)}")
 
+    // 2nd part
     var currentPosition = Hexagon(0,0,0)
     var maxDistance = 0
 

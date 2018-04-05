@@ -10,7 +10,7 @@ fun main(args: Array<String>) {
     (0 until captcha.length).forEach { i ->
         var pos = (i+(captcha.length/2))%captcha.length
         if (captcha[i] == captcha[pos])
-            sum += Integer.valueOf(""+captcha[i])
+            sum += captcha[i].toString().toInt()
     }
 
     println(sum)
