@@ -1,9 +1,9 @@
-package eighteen.day1
+package src.eighteen.day1
 
 import java.io.File
 
 fun main() {
-    val allNumbers = File("input/2018/day1.txt").readLines().map { it.toInt() }.toIntArray()
+    val allNumbers = File("input/2018/day1.txt").readLines().map { it.toInt() }
 
     var total = 0
 

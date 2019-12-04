@@ -2,20 +2,16 @@ package src.nineteen.day1
 
 import java.io.File
 
-fun main(args: Array<String>) {
-    val allNumbers = File("input/2019/day1.txt").readLines().map { it.toInt() }.toIntArray()
+fun main() {
+    val result = File("input/2019/day1.txt").readLines().map { calculateModuleFuel(it.toInt()) }.sum()
 
-    println (allNumbers.fold(0) { sum, moduleMass -> sum + calculateModuleFuel(moduleMass) })
+    println(result)
 }
 
 fun calculateModuleFuel(mass: Int) : Int {
-    if (mass <= 0)
-        return 0
-
     val fuelForThisMass = ((mass / 3) - 2)
-
-    if (fuelForThisMass <= 0)
-        return 0
-
-    return fuelForThisMass + calculateModuleFuel(fuelForThisMass)
+    return if (fuelForThisMass <= 0)
+        0
+    else
+        fuelForThisMass + calculateModuleFuel(fuelForThisMass)
 }
