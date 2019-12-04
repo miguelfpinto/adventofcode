@@ -1,4 +1,4 @@
-package day6
+package src.seventeen.day6
 
 import java.io.File
 

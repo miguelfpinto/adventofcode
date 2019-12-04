@@ -1,4 +1,4 @@
-package day7part2
+package src.seventeen.day7part2
 
 import java.io.File
 import kotlin.math.absoluteValue

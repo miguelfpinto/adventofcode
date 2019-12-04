@@ -1,12 +1,12 @@
-package eighteen.day2
+package src.eighteen.day2
 
 import java.io.File
 
 fun main() {
     val allLines = File("input/2018/day2.txt").readLines()
 
-    val wordsWithThreeLetters = allLines.stream().filter{word -> containsNEqualsLetters(word, 3)}.count()
-    val wordsWithTwoLetters = allLines.stream().filter{word -> containsNEqualsLetters(word, 2)}.count()
+    val wordsWithThreeLetters = allLines.stream().filter{word -> containsNEqualsLetters(word, 3) }.count()
+    val wordsWithTwoLetters = allLines.stream().filter{word -> containsNEqualsLetters(word, 2) }.count()
 
     println (wordsWithThreeLetters * wordsWithTwoLetters)
 }

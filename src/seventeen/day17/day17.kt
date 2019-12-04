@@ -1,4 +1,4 @@
-package day17
+package src.seventeen.day17
 
 fun main(args : Array<String>) {
 
