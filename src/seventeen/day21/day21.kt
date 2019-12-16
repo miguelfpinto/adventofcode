@@ -1,4 +1,4 @@
-package src.seventeen.day21
+package seventeen.day21
 
 import java.io.File
 import kotlin.collections.HashMap

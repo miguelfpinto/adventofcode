@@ -1,4 +1,4 @@
-package src.seventeen.day11
+package seventeen.day11
 
 import java.io.File
 import kotlin.math.abs

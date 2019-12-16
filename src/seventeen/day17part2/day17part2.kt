@@ -1,4 +1,4 @@
-package src.seventeen.day17part2
+package seventeen.day17part2
 
 fun main(args : Array<String>) {
 
